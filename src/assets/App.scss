@@ -1,0 +1,27 @@
+//@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+$theme-colors: (
+  "primary": #5B46F9
+);
+
+$color-primary: #5B46F9;
+$color-black: #3F3F3F;
+$color-grey: #A5A5A5;
+$color-light-grey: #D0D0D0;
+$color-red: #FF5151;
+$color-blue: #2DB3FF;
+$color-white: #FFFFFF;
+$color-green: #01E0AA;
+$btn-border-radius: 3000px;
+
+$enable-caret : false;
+
+@import "~bootstrap/scss/bootstrap";
+@import "style.scss";
+@import "about.scss";
+@import "questions.scss";
+@import "header.scss";
+@import "login.scss";
+@import "profile.scss";
+@import "leaderboard.scss";
+@import "draft.scss";

@@ -1,0 +1,84 @@
+.login-page {
+  background: #fff;
+  h2 {
+    font-style: normal;
+    font-weight: 300;
+    font-size: 37px;
+    line-height: 45px;
+    letter-spacing: -0.02em;
+    color: $color-black;
+  }
+  p {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 21.5px;
+    line-height: 26px;
+    letter-spacing: -0.02em;
+    color: $color-grey;
+  }
+  button.login{
+    background: $color-primary;
+    box-shadow: 12px 14px 38px -21px $color-green;
+    border-radius: 66px;
+    height: 76px;
+    font-size: 22px;
+    line-height: 33px;
+    letter-spacing: 0.015em;
+    font-weight: bold
+  }
+  button.sign-up {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 33px;
+    letter-spacing: -0.02em;
+    color: #FFFFFF;
+  }
+  .box {
+    background: $color-white;
+    border: 1px solid $color-light-grey;
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding: 7px 10px;
+    margin: 20px 0;
+    input {
+      color: inherit;
+      border:0;
+      font-size: 18px;
+      line-height: 22px;
+      outline: none;
+    }
+    .input-group-text {
+      background: $color-primary;
+      box-shadow: 4px 22px 68px -12px $color-primary;
+      border-color: inherit;
+      border-radius: 9px;
+      color: #fff;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 20px;
+      line-height: 30px;
+      letter-spacing: 0.015em;
+    }
+  }
+  @media only screen and (max-width: 768px) {
+    h2 {
+      font-size: 21px;
+      line-height: 28px;
+    }
+    p{
+      font-size: 13px;
+      line-height: 19px;
+    }
+    button.login{
+      height: 50px;
+      font-size: 16px;
+    }
+    .btn-fb, .btn-google{
+      height: 50px;
+      font-size: 18px;
+      margin: 15px 0;
+    }
+  }
+
+}

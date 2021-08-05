@@ -1,0 +1,88 @@
+{
+  "name": "website",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.2",
+    "@fortawesome/fontawesome-svg-core": "^1.2.34",
+    "@fortawesome/free-brands-svg-icons": "^5.15.2",
+    "@fortawesome/free-regular-svg-icons": "^5.15.2",
+    "@fortawesome/free-solid-svg-icons": "^5.15.2",
+    "@fortawesome/react-fontawesome": "^0.1.14",
+    "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/react": "^11.2.4",
+    "@testing-library/user-event": "^12.6.3",
+    "axios": "^0.21.1",
+    "bootstrap": "^4.6.0",
+    "bootstrap-switch-button-react": "^1.2.0",
+    "bs-stepper": "^1.7.0",
+    "draft-convert": "^2.1.10",
+    "draft-js": "^0.11.7",
+    "draftjs-to-html": "^0.9.1",
+    "env-cmd": "^10.1.0",
+    "html-to-draftjs": "^1.5.0",
+    "moment": "^2.29.1",
+    "moment-timezone": "^0.5.33",
+    "multiselect-react-dropdown": "^1.6.11",
+    "node-sass": "^4.14.1",
+    "radium": "^0.26.1",
+    "react": "^17.0.1",
+    "react-animations": "^1.0.0",
+    "react-bootstrap": "^1.4.3",
+    "react-bootstrap-sweetalert": "^5.2.0",
+    "react-bootstrap-typeahead": "^5.1.4",
+    "react-dom": "^17.0.1",
+    "react-draft-wysiwyg": "^1.14.6",
+    "react-dropdown-select": "^4.7.4",
+    "react-facebook-login": "^4.1.1",
+    "react-google-login": "^5.2.2",
+    "react-google-places-autocomplete": "^3.3.1",
+    "react-helmet": "^6.1.0",
+    "react-js-pagination": "^3.0.3",
+    "react-linkedin-login-oauth2": "^1.0.9",
+    "react-loader": "^2.4.7",
+    "react-loader-spinner": "^4.0.0",
+    "react-loading-overlay": "^1.0.1",
+    "react-multi-carousel": "^2.6.1",
+    "react-quill": "^1.3.5",
+    "react-redux": "^7.2.2",
+    "react-router-dom": "^5.2.0",
+    "react-schemaorg": "^1.3.3",
+    "react-scripts": "4.0.1",
+    "react-share": "^4.4.0",
+    "react-spinners": "^0.10.6",
+    "react-step-progress": "^1.0.3",
+    "react-toastify": "^7.0.3",
+    "react-twitter-login": "^1.4.0",
+    "redux": "^4.0.5",
+    "redux-persist": "^6.0.0",
+    "redux-thunk": "^2.3.0",
+    "schema-dts": "^0.8.3",
+    "web-vitals": "^0.2.4"
+  },
+  "scripts": {
+    "start": "env-cmd -f .env react-scripts start",
+    "start-dev": "env-cmd -f .env.development react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

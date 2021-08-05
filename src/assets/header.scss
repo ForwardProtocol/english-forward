@@ -1,0 +1,111 @@
+.header-div{
+    background-color: white;
+    padding: 10px;
+    .btn-outline-primary{
+        border-radius: 39px;
+        border: 2px solid;
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 22px;
+    }
+    .search-bar{
+        margin-left: 39px;
+    }
+    .header-link{
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+    .logo{
+        //width: 60.86px;
+        height: 39.76px;
+    }
+    .logo-notification{
+        height: 30px;
+        width: 26px;
+    }
+    .logo-message{
+        width: 33.9px;
+        height: 22.14px;
+    }
+    .logo-more{
+        height: 18px;
+        width: 28px;
+    }
+    .nav-text{
+        font-style: normal;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 30px;
+        color: #3F3F3F;
+    }
+    .navbar-light .navbar-nav .nav-link{
+        color: inherit;
+    }
+    .input-group{
+        //padding: 0 150px;
+    }
+    .search-input{
+      border-radius: 5px;
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 20px;
+      width: 330px;
+      border-right: inherit;
+    }
+    .search-input:focus{
+        border-right: inherit;
+    }
+    .search-input-group{
+      align-items: center;
+      padding-left: 10px;
+      border: 1.5px solid $color-light-grey;
+      padding-right: 15px;
+      border-left: inherit;
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+      
+    }
+    .form-icon{
+        height: 21px;
+        width: 21px;
+    }
+    .ask-question-nav{
+        height: 45px;
+        left: 1143px;
+        top: 37px;
+        background: #F8A519;
+        box-shadow: 0px 21px 70px -27px #F8A519;
+        border-radius: 5px;
+    }
+    input[type="text"]:focus{
+        //border:0px;
+        box-shadow: 0px 0px 0px 0px !important;
+        outline: 0 none;
+    }
+    
+    @media only screen and (max-width: 600px) {
+        .navbar-nav{
+            flex-direction: row;
+            .input-group{
+                display: none;
+            }
+            .dropdown-menu{
+                position: absolute;
+                left: auto;
+                right: 0;
+            }
+        }
+    }
+    @media only screen and (max-width: 768px) {
+        font-size: 14px;
+        .logo{
+            height: 30px;
+        }
+        .input-group{
+            padding: inherit;
+        }
+        .search-input{
+            width: 101px;
+        }
+    }
+}

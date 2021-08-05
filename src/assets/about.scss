@@ -1,0 +1,154 @@
+.aboutus {
+  background: #fff;
+  margin-bottom: -7px;
+  .section {
+    padding: 30px 0;
+  }
+  .heading-text {
+    font-weight: 700;
+    font-size: 37px;
+    line-height: 55.5px;
+  }
+  .detail-text {
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 37.4px;
+  }
+  .center-content {
+    align-items: center;
+  }
+  .text-content {
+    text-align: center;
+  }
+  .section-img {
+    width: 100%;
+  }
+  .bottom-text {
+    padding-top: 10px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+  }
+  .heading-small {
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 45px;
+  }
+  .detail-small {
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 30px;
+  }
+  .detail-medium {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 30.06px;
+  }
+  .input-button {
+    width: 100%;
+    background: #FFFFFF;
+    box-shadow: 0px 22px 100px rgba(0, 0, 0, 0.15);
+    border-radius: 19px;
+    display: flex;
+    padding: 20px;
+    align-items: center;
+    .content-text {
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 27px;
+      letter-spacing: 0.015em;
+      color: #B1B1B1;
+      flex: 8;
+    }
+    .content-button {
+      flex: 2;
+      box-shadow: 9px 22px 68px -12px $color-primary;
+      border-radius: 9px;
+      border-color: transparent;
+    }
+  }
+}
+.aboutus-impact-card {
+  background: #FFFFFF;
+  opacity: 0.8;
+  box-shadow: -53px 56px 96px -30px rgba(185, 185, 185, 0.8);
+  border-radius: 19px;
+  margin-bottom: 50px;
+  text-align: center;
+  .count {
+    font-weight: 200;
+    font-size: 70px;
+    line-height: 105px;
+  }
+  .name {
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 33px;
+    color: #B8B8B8;
+    letter-spacing: 0.055em;
+    text-transform: uppercase;
+  }
+  .right-comp {
+    position: absolute;
+    height: 18px;
+    border: 2px solid #2DB3FF;
+    top: 90px;
+    right: 10px;
+  }
+}
+.aboutus-team-card {
+  border-radius: 22px;
+  margin-bottom: 70px;
+  text-align: center;
+  width: 80%;
+  .profile-pic {
+    width: 100%;
+  }
+  .name {
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 33px;
+  }
+  .position {
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 27px;
+  }
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  .content.active {
+    background: #FFFFFF;
+    box-shadow: -53px 56px 59px -19px rgba(248, 165, 25, 0.7);
+    border-radius: 0px 0px 19px 19px;
+  }
+}
+.aboutus-team-card.active {
+  filter: drop-shadow(0px 0px 96px rgba(0, 0, 0, 0.25));
+}
+.aboutus-learning-card {
+  background: #FFFFFF;
+  box-shadow: -53px 56px 96px -19px rgba(185, 185, 185, 0.8);
+  border-radius: 19px;
+  margin-bottom: 50px;
+  .detail {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px;
+    text-align: center;
+    letter-spacing: -0.02em;
+  }
+  .center-icon {
+    position: absolute;
+    right: 2px;
+    top: -14px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(0deg, #2DB3FF, #2DB3FF);
+    box-shadow: 0px 17px 18px rgba(45, 179, 255, 0.3);
+  }
+}
