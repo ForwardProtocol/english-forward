@@ -2,6 +2,7 @@ import { Switch, Route } from 'react-router-dom';
 import { useRef, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Home from './Home';
+import EditProfile from './EditProfile';
 import NotFound from './NotFound';
 function usePrevious(value) {
     // The ref object is a generic container whose current property is mutable ...
@@ -36,6 +37,7 @@ const App = ({ match, location }) => {
         <Switch>
             <Route exact path={`${match.url}`} component={Home} title="Home" />
             <Route path={`${match.url}home`} component={Home} />
+            //<Route path={`${match.url}edit-profile`} component={EditProfile} />
             <Route component={NotFound} />
         </Switch>
     )

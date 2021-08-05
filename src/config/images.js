@@ -22,21 +22,7 @@ export const Images = {
     openWhite:require('../assets/icon/openWhite.png').default,
     lockIcon: require('../assets/icon/lockIcon.png').default,
     comment: require('../assets/icon/comment.svg').default,
-    facebook: require('../assets/icon/social/facebook.svg').default,
-    fb: require('../assets/icon/social/fb.png').default,
-    google: require('../assets/icon/social/google.png').default,
-    plus: require('../assets/icon/social/plus.png').default,
-    // instagram:require('../assets/icon/social/instagram.svg').default,
-    twitter:require('../assets/icon/social/twitter.svg').default,
-    youtube:require('../assets/icon/social/youtube.svg').default,
-    medium:require('../assets/icon/social/medium.svg').default,
-    paperPlane:require('../assets/icon/social/paperPlane.svg').default,
     dotIcon:require('../assets/icon/dotIcon.png').default,
-
-    blog1: require("../assets/image/blog1.png").default,
-    blog2: require("../assets/image/blog2.png").default,
-    blog3: require("../assets/image/blog3.png").default,
-    blog4: require("../assets/image/blog4.png").default,
     // Home page
 
     Group: require("../assets/image/Group.png").default,
@@ -66,12 +52,6 @@ export const Images = {
     // helpIcon:require('../assets/image/helpIcon.png').default,
 
     user:require('../assets/icon/user.svg').default,
-    user1:require('../assets/image/4.png').default,
-    user2:require('../assets/image/8.png').default,
-    user3:require('../assets/image/9.png').default,
-    news1:require('../assets/image/2.png').default,
-    news2:require('../assets/image/3.png').default,
-    news3:require('../assets/image/4.png').default,
 
     // home- our featured users
 

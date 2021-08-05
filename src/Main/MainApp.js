@@ -1,8 +1,6 @@
 import App from '../Pages/index';
 import { Container, Spinner } from 'react-bootstrap';
 import { BaseColor } from '../config/index';
-import Header from '../Component/Header';
-import Footer from '../Component/Footer';
 import LoadingOverlay from 'react-loading-overlay'
 import BounceLoader from 'react-spinners/BounceLoader'
 import { useSelector } from 'react-redux';
