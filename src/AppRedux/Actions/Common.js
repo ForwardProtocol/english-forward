@@ -13,9 +13,8 @@ export const languageListSuccess = (list) => {
 export const languageList = (data) => (dispatch) => {
     httpPost('language_controller/list', {})
         .then(res => {
-            console.log('res', res)
             if (res && !res.status) {
-                toast.error(res.message);
+                // toast.error(res.message);
             }
             dispatch(languageListSuccess(res && res.data || null))
         })

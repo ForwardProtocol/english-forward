@@ -19,7 +19,15 @@ import { geocodeByPlaceId } from 'react-google-places-autocomplete';
 import { geocodeByAddress, getLatLng } from 'react-google-places-autocomplete';
 import GooglePlaces from '../Component/GooglePlaces';
 import { faThList } from '@fortawesome/free-solid-svg-icons';
+import { pulse } from 'react-animations';
+import Radium, {StyleRoot} from 'radium';
 
+const styles = {
+  	pulse: {
+	    animation: 'x 1s',
+	    animationName: Radium.keyframes(pulse, 'pulse')
+  	}
+}
 class EditProfile extends Component {
 	defaultEducationErr = {
 		Institution: null,
@@ -62,6 +70,7 @@ class EditProfile extends Component {
 		};
 	}
 
+
 	handleChange = (e) => {
 		let name = e.target.id
 		let value = e.target.value || ""
@@ -69,10 +78,8 @@ class EditProfile extends Component {
 		let userTopics = userDetail.TopicID && userDetail.TopicID.split(',') || [];
 		let LearnerCertificates = [...userDetail.LearnerCertificates];
 		let TeachingEnglishCertificates = [...userDetail.TeachingEnglishCertificates];
-		// console.log(e.target.name, name, value, "Change Data");return;
 		if (e.target.id === "DOB") {
 			value = moment(e.target.value).toDate()
-			// console.log(userDetail.DOB, "DOB", e.target.value, moment(e.target.value).toDate());
 		}
 		if (e.target.id === "male") {
 			name = "Gender";
@@ -148,7 +155,6 @@ class EditProfile extends Component {
 		})
 		this.props.languageList();
 		this.getDetails();
-		console.log(this.state.educationDetails.length === 0, "this.state.educationDetails.length === 0")
 		if(this.state.educationDetails.length === 0){
 			this.addEducationDiv();
 		}
@@ -158,18 +164,6 @@ class EditProfile extends Component {
 	}
 
 	getDetails = () => {
-		{/*httpPost("user_topic_controller/list")
-			.then(res => {
-				if (res && res.data) {
-					if (res.data.length > 0) {
-						if (res.data[0].TopicIDs && res.data[0].TopicIDs.length > 0) {
-							this.setState({
-								topics: res.data[0].TopicIDs || []
-							})
-						}
-					}
-				}
-			})*/}
 		httpPost("topic_controller/list")
             .then(res => {
                 if (res && res.data) {
@@ -183,7 +177,7 @@ class EditProfile extends Component {
                 }
             })
 
-		httpPost("user_controller/retrive", { UserID: this.props.auth.user._id })
+		httpPost("user_controller/retrive")
 			.then((res) => {
 				if (res.data && res.data) {
 					var topic = res.data.MyTopic;
@@ -283,8 +277,6 @@ class EditProfile extends Component {
 					})
 				}
 			})
-
-		console.log(this.state.userDetail, "this.state.userDetail");
 	}
 	validateStep = (step_no, callback) => {
 		let { formErr, userDetail } = this.state;
@@ -299,9 +291,7 @@ class EditProfile extends Component {
 				Gender: userDetail && userDetail.Gender ? null : "Select Gender",
 			}
 			Object.entries(inerr).forEach((item, value) => {
-				// console.log('item', item, value);
 				if (item[1]) {
-					// console.log('value', value);
 					stepStatus['1'] = false
 				}
 			})
@@ -322,9 +312,7 @@ class EditProfile extends Component {
 				BlogAddress: userDetail && userDetail.BlogAddress ? userDetail.BlogAddress.match(urlPat) ? null : "Enter Valid Blog Url" : null,
 			}
 			Object.entries(inerr).forEach((item, value) => {
-				// console.log('item', item, value);
 				if (item[1]) {
-					// console.log('value', value);
 					stepStatus['2'] = false
 				}
 			})
@@ -339,7 +327,6 @@ class EditProfile extends Component {
 			Object.entries(inerr).forEach((item, value) => {
 				// console.log('item', item, value);
 				if (item[1]) {
-					// console.log('value', value);
 					stepStatus['3'] = false
 				}
 			})
@@ -418,8 +405,6 @@ class EditProfile extends Component {
 			})
 			err = { ...err, ...inerr }
 		}
-		// console.log('userdetail', userDetail);
-		// console.log('err', err);
 		this.setState({
 			...this.state,
 			formErr: err
@@ -465,11 +450,6 @@ class EditProfile extends Component {
 				toast.error("Enter all required fields");
 			}
 		})
-		// 	console.log("dfdaf", e)
-		// 	Object.keys(this.target).forEach((key) => {
-		//   // formData.append(key, this.form[key])
-		// })
-		// console.log("data", this.state.userDetail);
 	}
 	handleSubmit = () => {
 		httpPost("user_controller/update", this.state.userDetail)
@@ -492,7 +472,6 @@ class EditProfile extends Component {
 		this.stepper.previous();
 	}
 	submitLearnigCertificate = (files) => {
-		//return false;
 		var formData = new FormData();
 		if (files) {
 			for (const key of Object.keys(files)) {
@@ -533,8 +512,6 @@ class EditProfile extends Component {
 		}
 	}
 	uploadIndividualFile = (e, cert, type) => {
-		console.log(e);
-		console.log('cert', cert);
 		var formdata = new FormData();
 		if (e && e.target && e.target.files && e.target.files[0]) {
 			formdata.append('file', e.target.files[0]);
@@ -1025,7 +1002,6 @@ class EditProfile extends Component {
 		})
 	}
 	getGoogleLocation = (e) => {
-		console.log('e');
 		geocodeByAddress(e.description)
 			.then(results => getLatLng(results[0]))
 			.then(({ lat, lng }) => {
@@ -1111,217 +1087,220 @@ class EditProfile extends Component {
 								<div class="bs-stepper-content">
 									<form onSubmit={this.onSubmit} >
 										<div id="test-l-1" class="content">
-											<div className="mt-5 col-md-8 offset-md-2" >
-												<Form.Group as={Row} >
-													<Form.Label column sm={4}>
-														First Name
-													</Form.Label>
-													<Col sm={7}>
-														<Form.Control required type="text" id="FirstName" name="FirstName" placeholder="First Name" defaultValue={this.state.userDetail.FirstName} onChange={this.handleChange} />
-														{/*error.FirstName ? (<span className="error" >{error.FirstName}</span>) : null*/}
-														<span className="error">{formErr && formErr.FirstName}</span>
-													</Col>
-												</Form.Group>
-												<Form.Group as={Row} >
-													<Form.Label column sm={4}>
-														Last Name
-													</Form.Label>
-													<Col sm={7}>
-														<Form.Control type="text" id="LastName" name="LastName" placeholder="Last Name" defaultValue={this.state.userDetail.LastName} onChange={this.handleChange} />
-														{/*error.LastName ? (<span className="error" >{error.LastName}</span>) : null*/}
-														<span className="error">{formErr && formErr.LastName}</span>
-													</Col>
-												</Form.Group>
-												<Form.Group as={Row} >
-													<Form.Label column sm={4}>
-														Gender
-													</Form.Label>
-													<Col sm={7}>
-														<div className="row" >
-															<div className="col-md-2" >
-																<Form.Check id="male" name="Gender" type="radio" label="Male" checked={this.state.userDetail.Gender == '1' ? true : false} onChange={this.handleChange} />
-															</div>
-															<div className="col-md-3" >
-																<Form.Check id="female" name="Gender" type="radio" label="Female" checked={this.state.userDetail.Gender == '2' ? true : false} onChange={this.handleChange} />
-															</div>
-														</div>
-														<span className="error">{formErr && formErr.Gender}</span>
-													</Col>
-												</Form.Group>
-												<Form.Group as={Row} >
-													<Form.Label column sm={4}>
-														Date of Birth
-													</Form.Label>
-													<Col sm={7}>
-														<Form.Control type="date" id="DOB" placeholder="DOB" defaultValue={this.state.userDetail.DOB} onChange={this.handleChange} />
-														<span className="error">{formErr && formErr.DOB}</span>
-													</Col>
-												</Form.Group>
-												<Form.Group as={Row} >
-													<Form.Label column sm={4}>
-														Home Town
-													</Form.Label>
-													<Col sm={7}>
-														<GooglePlaces
-															placeholder="Home Town"
-															value={this.state.userDetail.HomeTown || null}
-															change={e => {
-																this.setState({
-																	...this.state,
-																	userDetail: {
-																		...this.state.userDetail,
-																		HomeTown: e
-																	}
-																})
-															}}
-														/>
-														{/* <GooglePlacesAutocomplete
-															onSelect={(e) => this.getGoogleLocation(e,'1')}
-															placeholder="Home Town"
-															initialValue={this.state.userDetail.HomeTown || null}
-															apiOptions={{ types: ['(cities)'], }}
-															renderInput={(props) =>
-																<input {...props} placeholder="Location" />
-															}
-															renderSuggestions={(active, suggestions, onSelectSuggestion) => (
-																<div className="google-places-autocomplete__suggestions-container">
-																	{
-																		suggestions.map((suggestion) => (
-																			<div
-																				style={{
-																					overflow: 'hidden',
-																					textOverflow: 'ellipsis',
-																					whiteSpace: 'nowrap',
-																					paddingLeft: '5px',
-																					fontSize: '12px',
-																					border: '1px solid #e8e8e8'
-																				}}
-																				className="suggestion"
-																				onClick={(event) => { console.log("suggestion", suggestion); onSelectSuggestion(suggestion, event); }}
-																			>
-																				{suggestion.description}
-																			</div>
-																		))
-																	}
+											<StyleRoot>
+												<div className="mt-5 col-md-8 offset-md-2" style={styles.pulse} >
+													<Form.Group as={Row} >
+														<Form.Label column sm={4}>
+															First Name
+														</Form.Label>
+														<Col sm={7}>
+															<Form.Control required type="text" id="FirstName" name="FirstName" placeholder="First Name" defaultValue={this.state.userDetail.FirstName} onChange={this.handleChange} />
+															{/*error.FirstName ? (<span className="error" >{error.FirstName}</span>) : null*/}
+															<span className="error">{formErr && formErr.FirstName}</span>
+														</Col>
+													</Form.Group>
+													<Form.Group as={Row} >
+														<Form.Label column sm={4}>
+															Last Name
+														</Form.Label>
+														<Col sm={7}>
+															<Form.Control type="text" id="LastName" name="LastName" placeholder="Last Name" defaultValue={this.state.userDetail.LastName} onChange={this.handleChange} />
+															{/*error.LastName ? (<span className="error" >{error.LastName}</span>) : null*/}
+															<span className="error">{formErr && formErr.LastName}</span>
+														</Col>
+													</Form.Group>
+													<Form.Group as={Row} >
+														<Form.Label column sm={4}>
+															Gender
+														</Form.Label>
+														<Col sm={7}>
+															<div className="row" >
+																<div className="col-md-2" >
+																	<Form.Check id="male" name="Gender" type="radio" label="Male" checked={this.state.userDetail.Gender == '1' ? true : false} onChange={this.handleChange} />
 																</div>
-															)}
-														/> */}
-														{/* <Form.Control as="textarea" rows={3} id="HomeTown" name="HomeTown" placeholder="Home Town" defaultValue={this.state.userDetail.HomeTown} onChange={this.handleChange} /> */}
-													</Col>
-												</Form.Group>
-												<Form.Group as={Row} >
-													<Form.Label column sm={4}>
-														Current City
-													</Form.Label>
-													<Col sm={7}>
-														<GooglePlaces
-															placeholder="Current City"
-															value={this.state.userDetail.CurrentLocation || null}
-															change={e => {
-																this.setState({
-																	...this.state,
-																	userDetail: {
-																		...this.state.userDetail,
-																		CurrentLocation: e
-																	}
-																})
-															}}
-														/>
-														{/* <GooglePlacesAutocomplete
-															
-															onSelect={(e) => this.getGoogleLocation(e,'2')}
-															placeholder="City"
-															initialValue={this.state.userDetail.CurrentLocation || null}
-															apiOptions={{ types: ['(cities)'], }}
-															renderInput={(props) =>
-																<input {...props} placeholder="Location" />
-															}
-															renderSuggestions={(active, suggestions, onSelectSuggestion) => (
-																<div className="google-places-autocomplete__suggestions-container">
-																	{
-																		suggestions.map((suggestion) => (
-																			<div
-																				style={{
-																					overflow: 'hidden',
-																					textOverflow: 'ellipsis',
-																					whiteSpace: 'nowrap',
-																					paddingLeft: '5px',
-																					fontSize: '12px',
-																					border: '1px solid #e8e8e8'
-																				}}
-																				className="suggestion"
-																				onClick={(event) => { console.log("suggestion", suggestion); onSelectSuggestion(suggestion, event); }}
-																			>
-																				{suggestion.description}
-																			</div>
-																		))
-																	}
+																<div className="col-md-3" >
+																	<Form.Check id="female" name="Gender" type="radio" label="Female" checked={this.state.userDetail.Gender == '2' ? true : false} onChange={this.handleChange} />
 																</div>
-															)}
-														/> */}
-														{/* <Form.Control as="textarea" rows={3} id="CurrentLocation" placeholder="Location" defaultValue={this.state.userDetail.CurrentLocation} onChange={this.handleChange} /> */}
-													</Col>
-												</Form.Group>
-												<Form.Group as={Row} >
-													<Form.Label column sm={4}>
-														Relationship status
-													</Form.Label>
-													<Col sm={7}>
-														<Form.Control size="sm" as="select" id="RelationshipStatus" value={this.state.userDetail.RelationshipStatus} onChange={this.handleChange} >
-															<option value="1" >In a relationship</option>
-															<option value="2" >Single</option>
-															<option value="3" >Engaged</option>
-															<option value="4" >Married</option>
-															<option value="5" >Open relationship</option>
-															<option value="6" >It's Complicated</option>
-															<option value="7" >Do not want to disclose</option>
-														</Form.Control>
-													</Col>
-												</Form.Group>
-												<Form.Group as={Row} >
-													<Form.Label column sm={4}>
-														Introduce yourself
-													</Form.Label>
-													<Col sm={7}>
-														<Form.Control as="textarea" rows={3} id="About" placeholder="About me" defaultValue={this.state.userDetail.About} onChange={this.handleChange} />
-													</Col>
-												</Form.Group>
-												<Form.Group as={Row} >
-													<Form.Label column sm={4}>
-														Political Views
-													</Form.Label>
-													<Col sm={7}>
-														<Form.Control as="textarea" rows={3} id="PoliticalViews" placeholder="Political views" defaultValue={this.state.userDetail.PoliticalViews} onChange={this.handleChange} />
-													</Col>
-												</Form.Group>
-												<Form.Group as={Row} >
-													<Form.Label column sm={4}>
-														Spirituality
-													</Form.Label>
-													<Col sm={7}>
-														<Form.Control as="textarea" rows={3} id="Spirituality" placeholder="Spirituality" defaultValue={this.state.userDetail.Spirituality} onChange={this.handleChange} />
-													</Col>
-												</Form.Group>
-											</div>
-											<div className="text-center" >
-												<button type="button" class="btn btn-primary ml-2 mr-2"
-													onClick={() => {
-														this.saveTillThis('1');
-													}}>Save & Exit</button>
-												<button type="button" class="btn btn-primary"
-													onClick={() => {
-														const _this = this;
-														this.validateStep('1', function (res) {
-															if (res) {
-																console.log('validate')
-																_this.nextStep()
-															}
-														})
-													}}>Next</button>
-											</div>
+															</div>
+															<span className="error">{formErr && formErr.Gender}</span>
+														</Col>
+													</Form.Group>
+													<Form.Group as={Row} >
+														<Form.Label column sm={4}>
+															Date of Birth
+														</Form.Label>
+														<Col sm={7}>
+															<Form.Control type="date" id="DOB" placeholder="DOB" defaultValue={this.state.userDetail.DOB} onChange={this.handleChange} />
+															<span className="error">{formErr && formErr.DOB}</span>
+														</Col>
+													</Form.Group>
+													<Form.Group as={Row} >
+														<Form.Label column sm={4}>
+															Home Town
+														</Form.Label>
+														<Col sm={7}>
+															<GooglePlaces
+																placeholder="Home Town"
+																value={this.state.userDetail.HomeTown || null}
+																change={e => {
+																	this.setState({
+																		...this.state,
+																		userDetail: {
+																			...this.state.userDetail,
+																			HomeTown: e
+																		}
+																	})
+																}}
+															/>
+															{/* <GooglePlacesAutocomplete
+																onSelect={(e) => this.getGoogleLocation(e,'1')}
+																placeholder="Home Town"
+																initialValue={this.state.userDetail.HomeTown || null}
+																apiOptions={{ types: ['(cities)'], }}
+																renderInput={(props) =>
+																	<input {...props} placeholder="Location" />
+																}
+																renderSuggestions={(active, suggestions, onSelectSuggestion) => (
+																	<div className="google-places-autocomplete__suggestions-container">
+																		{
+																			suggestions.map((suggestion) => (
+																				<div
+																					style={{
+																						overflow: 'hidden',
+																						textOverflow: 'ellipsis',
+																						whiteSpace: 'nowrap',
+																						paddingLeft: '5px',
+																						fontSize: '12px',
+																						border: '1px solid #e8e8e8'
+																					}}
+																					className="suggestion"
+																					onClick={(event) => { console.log("suggestion", suggestion); onSelectSuggestion(suggestion, event); }}
+																				>
+																					{suggestion.description}
+																				</div>
+																			))
+																		}
+																	</div>
+																)}
+															/> */}
+															{/* <Form.Control as="textarea" rows={3} id="HomeTown" name="HomeTown" placeholder="Home Town" defaultValue={this.state.userDetail.HomeTown} onChange={this.handleChange} /> */}
+														</Col>
+													</Form.Group>
+													<Form.Group as={Row} >
+														<Form.Label column sm={4}>
+															Current City
+														</Form.Label>
+														<Col sm={7}>
+															<GooglePlaces
+																placeholder="Current City"
+																value={this.state.userDetail.CurrentLocation || null}
+																change={e => {
+																	this.setState({
+																		...this.state,
+																		userDetail: {
+																			...this.state.userDetail,
+																			CurrentLocation: e
+																		}
+																	})
+																}}
+															/>
+															{/* <GooglePlacesAutocomplete
+																
+																onSelect={(e) => this.getGoogleLocation(e,'2')}
+																placeholder="City"
+																initialValue={this.state.userDetail.CurrentLocation || null}
+																apiOptions={{ types: ['(cities)'], }}
+																renderInput={(props) =>
+																	<input {...props} placeholder="Location" />
+																}
+																renderSuggestions={(active, suggestions, onSelectSuggestion) => (
+																	<div className="google-places-autocomplete__suggestions-container">
+																		{
+																			suggestions.map((suggestion) => (
+																				<div
+																					style={{
+																						overflow: 'hidden',
+																						textOverflow: 'ellipsis',
+																						whiteSpace: 'nowrap',
+																						paddingLeft: '5px',
+																						fontSize: '12px',
+																						border: '1px solid #e8e8e8'
+																					}}
+																					className="suggestion"
+																					onClick={(event) => { console.log("suggestion", suggestion); onSelectSuggestion(suggestion, event); }}
+																				>
+																					{suggestion.description}
+																				</div>
+																			))
+																		}
+																	</div>
+																)}
+															/> */}
+															{/* <Form.Control as="textarea" rows={3} id="CurrentLocation" placeholder="Location" defaultValue={this.state.userDetail.CurrentLocation} onChange={this.handleChange} /> */}
+														</Col>
+													</Form.Group>
+													<Form.Group as={Row} >
+														<Form.Label column sm={4}>
+															Relationship status
+														</Form.Label>
+														<Col sm={7}>
+															<Form.Control size="sm" as="select" id="RelationshipStatus" value={this.state.userDetail.RelationshipStatus} onChange={this.handleChange} >
+																<option value="1" >In a relationship</option>
+																<option value="2" >Single</option>
+																<option value="3" >Engaged</option>
+																<option value="4" >Married</option>
+																<option value="5" >Open relationship</option>
+																<option value="6" >It's Complicated</option>
+																<option value="7" >Do not want to disclose</option>
+															</Form.Control>
+														</Col>
+													</Form.Group>
+													<Form.Group as={Row} >
+														<Form.Label column sm={4}>
+															Introduce yourself
+														</Form.Label>
+														<Col sm={7}>
+															<Form.Control as="textarea" rows={3} id="About" placeholder="About me" defaultValue={this.state.userDetail.About} onChange={this.handleChange} />
+														</Col>
+													</Form.Group>
+													<Form.Group as={Row} >
+														<Form.Label column sm={4}>
+															Political Views
+														</Form.Label>
+														<Col sm={7}>
+															<Form.Control as="textarea" rows={3} id="PoliticalViews" placeholder="Political views" defaultValue={this.state.userDetail.PoliticalViews} onChange={this.handleChange} />
+														</Col>
+													</Form.Group>
+													<Form.Group as={Row} >
+														<Form.Label column sm={4}>
+															Spirituality
+														</Form.Label>
+														<Col sm={7}>
+															<Form.Control as="textarea" rows={3} id="Spirituality" placeholder="Spirituality" defaultValue={this.state.userDetail.Spirituality} onChange={this.handleChange} />
+														</Col>
+													</Form.Group>
+												</div>
+												<div className="text-center" >
+													<button type="button" class="btn btn-primary ml-2 mr-2"
+														onClick={() => {
+															this.saveTillThis('1');
+														}}>Save & Exit</button>
+													<button type="button" class="btn btn-primary"
+														onClick={() => {
+															const _this = this;
+															this.validateStep('1', function (res) {
+																if (res) {
+																	console.log('validate')
+																	_this.nextStep()
+																}
+															})
+														}}>Next</button>
+												</div>
+											</StyleRoot>
 										</div>
 										<div id="test-l-2" class="content">
-											<div className="mt-5 col-md-8 offset-md-2" >
+											<StyleRoot>
+											<div className="mt-5 col-md-8 offset-md-2" style={styles.pulse} >
 												<Form.Group as={Row} >
 													<Form.Label column sm={4}>
 														Email
@@ -1387,9 +1366,11 @@ class EditProfile extends Component {
 													}}
 												>Next</button>
 											</div>
+											</StyleRoot>
 										</div>
 										<div id="test-l-3" class="content text-center">
-											<div className="mt-5 col-md-8 offset-md-2" >
+											<StyleRoot>
+											<div className="mt-5 col-md-8 offset-md-2" style={styles.pulse} >
 												<Form.Group as={Row} >
 													<Form.Label column sm={4}>
 														Do you want to practice your English with others
@@ -1484,6 +1465,7 @@ class EditProfile extends Component {
 													}}
 												>Next</button>
 											</div>
+											</StyleRoot>
 										</div>
 										<div id="test-l-4" class="content">
 											<div className="mt-5 mb-5 col-md-8 offset-md-2" >
@@ -1666,7 +1648,8 @@ class EditProfile extends Component {
 											</div>
 										</div>
 										<div id="test-l-7" class="content">
-											<div className="mt-5 col-md-8 offset-md-2" >
+											<StyleRoot>
+											<div className="mt-5 col-md-8 offset-md-2" style={styles.pulse} >
 												<Form.Group as={Row} >
 													<Form.Label column sm={4}>
 														How long have you been teaching English
@@ -1774,9 +1757,11 @@ class EditProfile extends Component {
 													}}
 												>Next</button>
 											</div>
+											</StyleRoot>
 										</div>
 										<div id="test-l-8" class="content">
-											<div className="mt-5 col-md-8 offset-md-2" >
+											<StyleRoot>
+											<div className="mt-5 col-md-8 offset-md-2" style={styles.pulse} >
 												<Form.Group as={Row} >
 													<Form.Label column sm={4}>
 														Interests
@@ -1869,6 +1854,7 @@ class EditProfile extends Component {
 											<div className="text-center" >
 												<button class="btn btn-primary" >Submit</button>
 											</div>
+											</StyleRoot>
 										</div>
 									</form>
 								</div>
