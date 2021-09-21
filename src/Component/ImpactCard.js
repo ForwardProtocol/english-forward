@@ -33,5 +33,3 @@ ImpactCard.defaultProps = {
     impacts: []
 }
 export default ImpactCard;
-
-// margin-left: 27px;margin-top: -14px;

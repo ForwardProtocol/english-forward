@@ -40,10 +40,7 @@ function QuestionCard(props) {
 									<Link to={'/question/' + ele.QuestionUrl} >
 										<h6 className="detail" dangerouslySetInnerHTML={{ __html: ele.Subject && ele.Subject.length > 100 ? ele.Subject.substring(0, 100) : ele.Subject }} ></h6>
 									</Link>
-									{/*<br /><small style={{ marginRight: 50, marginLeft: -50, color: "#5ABCF7" }}>Spoken English</small>
-									<br />*/}
 									<div className="action" >
-										{/* marginRight: 50, */}
 										<label ><Image src={Images.up} />&nbsp;<span style={styles.pulse} >{ele.UpvoteCount}</span></label>
 										<label style={{ marginLeft: 50 }}><Image src={Images.comment} />&nbsp;<span style={styles.pulse} >{ele.ShareCount}</span></label>
 									</div>

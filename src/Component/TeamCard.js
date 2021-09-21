@@ -43,8 +43,6 @@ function TeamCard(props) {
     };
     return (
         <>
-
-            {/* <Row className="pt-5"> */}
             <Carousel
                 draggable={false}
                 showDots={false}
@@ -74,9 +72,6 @@ function TeamCard(props) {
 
                 ))}
             </Carousel>
-
-            {/* </Row> */}
-
         </>
     )
 }
@@ -93,5 +88,3 @@ TeamCard.defaultProps = {
     setDeActive: () => { },
 }
 export default TeamCard;
-
-// margin-left: 27px;margin-top: -14px;

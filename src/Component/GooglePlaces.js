@@ -8,7 +8,7 @@ function GooglePlaces(props) {
         console.log('value', value);
         props.change(value && value.label || null);
     }, [value])
-
+ 
     useEffect(() => {
         if (props.value) {
             setValue({ label: props.value, value: {} })
